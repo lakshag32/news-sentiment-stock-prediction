@@ -1,0 +1,12 @@
+#ideas on how to improve this: 
+#1 scrape from multiple news data bases -- yahoo, google, etc.
+#2 better sentiment analysis model for specifically news articles
+#3 scrape more than just headlines and run analysis on that
+#4 take news articles from multiple countries and translate? 
+#5 add weighting to bigger news stations
+#5 scrape with multiple search queries
+#6 Scrape multilple topics on google news? 
+#7 Web scrape youtube search results for Tesla
+#8 Scrape news articles from multiple search engines, combine all search results into one list, then remove all repeated ones 
+#9 Use the description portion of oxylab's search thing as well for senti analysis
+#10 When searching in google, type: "nvidia yahoo" and you will get yahoo articles. Repeat for other sources like yahoo. Repeat for other search engines
