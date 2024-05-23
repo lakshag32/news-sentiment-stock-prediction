@@ -14,3 +14,4 @@
 #12 Try searching for tweets when searching for nvidia news
 #13 Try to scrape twitter using headless browser, or manually through mouse clicks, copy paste, etc.
 #14 Scrape twitter using this? https://scrapfly.io/blog/how-to-scrape-twitter/
+#15 Run sentiment_analyzer script every few hours to catch all the articles

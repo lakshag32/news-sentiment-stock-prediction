@@ -18,8 +18,8 @@ import pandas as pd
 # }
 
 payload = {
-    "source": "yahoo_search",
-    "query": "nvidia",
+    "source": "google_search",
+    "query": "nvidia finance",
     "parse": True,
     "context": [
         {
@@ -28,10 +28,15 @@ payload = {
         }
     ],
     "start_page": 2,
-    "pages": 3,
+    "pages": 14,
     "limit": 10,
 }
 
+# payload = {
+#     "source": "bing",
+#     "url": "https://www.bing.com/news/search?q=nvidia&FORM=HDRSC7",
+#     "limit": 30,
+# }
 
 # Get response.
 response = requests.request(
@@ -41,14 +46,12 @@ response = requests.request(
     json=payload,
 )
 
-
 if response.status_code != 200:
     print("Error - ", response.json())
     exit(-1)
-
 
 pprint(response.json())
 
 data = response.json()
 df = pd.json_normalize(data['results'])
-df.to_csv('export4.csv', index=False)
+df.to_csv('nvidia_finance.csv', index=False)
