@@ -1,18 +1,23 @@
 #ideas on how to improve this: 
-#1 scrape from multiple news data bases -- yahoo, google, etc.
 #2 better sentiment analysis model for specifically news articles
+#1 scrape from multiple news data bases -- yahoo, google, etc.
 #3 scrape more than just headlines and run analysis on that
-#4 take news articles from multiple countries and translate? 
 #5 add weighting to bigger news stations
-#5 scrape with multiple search queries
 #6 Scrape multilple topics on google news? 
 #7 Web scrape youtube search results for Tesla
-#8 Scrape news articles from multiple search engines, combine all search results into one list, then remove all repeated ones 
-#9 Use the description portion of oxylab's search thing as well for senti analysis
+
+
+
+Organized ideas(ranked): 
+#16 Scrape news from google from different countries(US, India, etc.). Perhaps translate articles. Ensure sentiment is captured
+#15 Run sentiment_analyzer script every few hours to catch all the articles
 #10 When searching in google, type: "nvidia yahoo" and you will get yahoo articles. Repeat for other sources like yahoo. Repeat for other search engines
-#11 Try getting news articles from other countries as well
-#12 Try searching for tweets when searching for nvidia news
+#5 scrape with multiple search queries -- Done
+#8 Scrape news articles from multiple search engines, combine all search results into one list, then remove all repeated ones 
 #13 Try to scrape twitter using headless browser, or manually through mouse clicks, copy paste, etc.
 #14 Scrape twitter using this? https://scrapfly.io/blog/how-to-scrape-twitter/
-#15 Run sentiment_analyzer script every few hours to catch all the articles
-#16 Scrape news from google from different countries(US, India, etc.)
+#9 Use the description portion of oxylab's search thing as well for senti analysis -- Done 
+#12 Try searching for tweets when searching for nvidia news -- Try again 
+
+
+
