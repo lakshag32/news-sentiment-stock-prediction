@@ -9,6 +9,7 @@
 
 
 Organized ideas(ranked): 
+#1 iterate through search results, acculumate everything in one csv
 #16 Scrape news from google from different countries(US, India, etc.). Perhaps translate articles. Ensure sentiment is captured
 #15 Run sentiment_analyzer script every few hours to catch all the articles
 #10 When searching in google, type: "nvidia yahoo" and you will get yahoo articles. Repeat for other sources like yahoo. Repeat for other search engines
@@ -18,6 +19,6 @@ Organized ideas(ranked):
 #14 Scrape twitter using this? https://scrapfly.io/blog/how-to-scrape-twitter/
 #9 Use the description portion of oxylab's search thing as well for senti analysis -- Done 
 #12 Try searching for tweets when searching for nvidia news -- Try again 
-
+#13 Make a machine learning model to map the days news/tweets/etc. to the closing price of a stock for the first minute of the day
 
 
