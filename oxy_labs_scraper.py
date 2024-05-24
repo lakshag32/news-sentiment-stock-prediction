@@ -18,9 +18,11 @@ import time
 #     'limit': 10,
 # }
 
-queries = ['nvidia yahoo','nvidia stock','nvidia finance']
+queries = ['nvidia yahoo','products nvidia','nvidia company', 'nvidia buy or sell', 'nvidia bad or good', 'nvidia ai', 'nvidia report', 'nvidia Q1']
 # countries = ["United States",'Australia',"United Kingdom", "India"]
 countries = ["United States"]
+
+list_of_dfs = []
 for country in countries: 
     for query in queries: 
         payload = {
@@ -56,4 +58,7 @@ for country in countries:
 
         data = response.json()
         df = pd.json_normalize(data['results'])
-        df.to_csv(f'{country}_{query}.csv', index=False)
+        list_of_dfs.append(df)
+
+all_data = pd.concat(list_of_dfs, ignore_index=True, axis=0)
+all_data.to_csv('US_nvidia_data.csv', index=False)
