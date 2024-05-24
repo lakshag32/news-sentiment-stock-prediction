@@ -4,6 +4,7 @@
 import requests
 from pprint import pprint
 import pandas as pd
+import time
 
 # payload = {
 #     'source': 'google_search',
@@ -45,13 +46,14 @@ for country in countries:
             auth=('LorenzoThePasta', '=362f5JPNFahs_Y'),
             json=payload,
         )
+        
+        time.sleep(2)
 
         if response.status_code != 200:
             print("Error - ", response.json())
-            exit(-1)
 
-        pprint(response.json())
+        # pprint(response.json())
 
         data = response.json()
         df = pd.json_normalize(data['results'])
-        df.to_csv('data.csv', index=False)
+        df.to_csv(f'{country}_{query}.csv', index=False)
