@@ -9,8 +9,9 @@
 
 
 Organized ideas(ranked): 
-#1 iterate through search results, acculumate everything in one csv
-#16 Scrape news from google from different countries(US, India, etc.). Perhaps translate articles. Ensure sentiment is captured
+#1 iterate through search results, acculumate everything in one csv -- Done. 
+#16 Scrape news from google from different countries(US, India, etc.) -- Done. Not super succesfull. Scraped Australia, India, UK. 188 articles. Maybe doing wrong. 
+#4  Perhaps translate articles. Ensure sentiment is captured. 
 #15 Run sentiment_analyzer script every few hours to catch all the articles
 #10 When searching in google, type: "nvidia yahoo" and you will get yahoo articles. Repeat for other sources like yahoo. Repeat for other search engines
 #5 scrape with multiple search queries -- Done

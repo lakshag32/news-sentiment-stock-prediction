@@ -24,7 +24,15 @@ IN_nvidia = pd.read_csv('data//India_nvidia.csv', on_bad_lines='warn')
 IN_nvidia_finance = pd.read_csv('data//India_nvidia.csv', on_bad_lines='warn')
 IN_nvidia_stock = pd.read_csv('data//India_nvidia.csv', on_bad_lines='warn')
 
-all_data = pd.concat([AU_nvidia, AU_nvidia_finance, AU_nvidia_stock,US_nvidia,US_nvidia_finance,US_nvidia_stock,UK_nvidia,UK_nvidia_finance,UK_nvidia_stock,IN_nvidia,IN_nvidia_finance,IN_nvidia_stock], ignore_index=True, axis=0)
+CH_nvidia = pd.read_csv('data//China_nvidia.csv', on_bad_lines='warn')
+CH_nvidia_finance = pd.read_csv('data//China_nvidia.csv', on_bad_lines='warn')
+CH_nvidia_stock = pd.read_csv('data//China_nvidia.csv', on_bad_lines='warn')
+
+RU_nvidia = pd.read_csv('data//Russia_nvidia.csv', on_bad_lines='warn')
+RU_nvidia_finance = pd.read_csv('data//Russia_nvidia.csv', on_bad_lines='warn')
+RU_nvidia_stock = pd.read_csv('data//Russia_nvidia.csv', on_bad_lines='warn')
+
+all_data = pd.concat([AU_nvidia, AU_nvidia_finance, AU_nvidia_stock,US_nvidia,US_nvidia_finance,US_nvidia_stock,UK_nvidia,UK_nvidia_finance,UK_nvidia_stock,IN_nvidia,IN_nvidia_finance,IN_nvidia_stock, CH_nvidia,CH_nvidia_finance,CH_nvidia_stock,RU_nvidia,RU_nvidia_finance,RU_nvidia_stock], ignore_index=True, axis=0)
 
 for row in range(len(all_data)): 
     row_data = ast.literal_eval(all_data["content.results.main"][row])

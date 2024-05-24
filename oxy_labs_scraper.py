@@ -18,9 +18,9 @@ import time
 #     'limit': 10,
 # }
 
-queries = ['nvidia','nvidia stock','nvidia finance']
-countries = ["United States",'Australia',"United Kingdom", "India"]
-
+queries = ['nvidia yahoo','nvidia stock','nvidia finance']
+# countries = ["United States",'Australia',"United Kingdom", "India"]
+countries = ["United States"]
 for country in countries: 
     for query in queries: 
         payload = {
