@@ -35,6 +35,7 @@ RU_nvidia_stock = pd.read_csv('data//Russia_nvidia.csv', on_bad_lines='warn')
 US_new_nvidia_news = pd.read_csv('data//US_nvidia_data.csv',on_bad_lines='warn')
 
 all_data = pd.concat([AU_nvidia, AU_nvidia_finance, AU_nvidia_stock,US_nvidia,US_nvidia_finance,US_nvidia_stock,UK_nvidia,UK_nvidia_finance,UK_nvidia_stock,IN_nvidia,IN_nvidia_finance,IN_nvidia_stock, CH_nvidia,CH_nvidia_finance,CH_nvidia_stock,RU_nvidia,RU_nvidia_finance,RU_nvidia_stock,US_new_nvidia_news], ignore_index=True, axis=0)
+#356
 
 for row in range(len(all_data)): 
     print(row)
@@ -42,18 +43,19 @@ for row in range(len(all_data)):
     for site in row_data: 
         if "hour" in site["relative_publish_date"]: 
             nvidia_titles.append(site['title'])
+            nvidia_desc.append(site['desc'])
         elif "minute" in site["relative_publish_date"]: 
             nvidia_titles.append(site['title'])
+            nvidia_desc.append(site['desc'])
+
 
 all_article_titles = list(set(nvidia_titles))
-
-print(len(all_article_titles))
 
 tokenizer = AutoTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
 model = AutoModelForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
 
 total_headline_sentiment = 0 
-# total_desc_sentiment = 0 
+total_desc_sentiment = 0 
 
 
 for headline in all_article_titles:
