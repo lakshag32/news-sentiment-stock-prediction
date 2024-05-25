@@ -1,5 +1,4 @@
 #ideas on how to improve this: 
-#1 GOOGLE HAS A FEATURE TO SORT BY DATE!! 
 #2 better sentiment analysis model for specifically news articles
 #1 scrape from multiple news data bases -- yahoo, google, etc.
 #3 scrape more than just headlines and run analysis on that
@@ -11,17 +10,19 @@
 
 
 Organized ideas(ranked): 
-#1 iterate through search results, acculumate everything in one csv -- Done. 
-#16 Scrape news from google from different countries(US, India, etc.) -- Done. Not super succesfull. Scraped Australia, India, UK. 188 articles. Maybe doing wrong. 
-#4  Perhaps translate articles. Ensure sentiment is captured. 
-#15 Run sentiment_analyzer script every few hours to catch all the articles
-#10 When searching in google, type: "nvidia yahoo" and you will get yahoo articles. Repeat for other sources like yahoo. Repeat for other search engines
-#5 scrape with multiple search queries -- Done
-#8 Scrape news articles from multiple search engines, combine all search results into one list, then remove all repeated ones 
-#13 Try to scrape twitter using headless browser, or manually through mouse clicks, copy paste, etc.
-#14 Scrape twitter using this? https://scrapfly.io/blog/how-to-scrape-twitter/
-#9 Use the description portion of oxylab's search thing as well for senti analysis -- Done 
-#12 Try searching for tweets when searching for nvidia news -- Try again 
-#13 Make a machine learning model to map the days news/tweets/etc. to wether the first candle of the day was green or red(0 or 1)
+#1 GOOGLE HAS A FEATURE TO SORT BY DATE!! 
+#2 Make all things using selenium 
+#3 iterate through search results, acculumate everything in one csv -- Done. 
+#4 Scrape news from google from different countries(US, India, etc.) -- Done. Not super succesfull. Scraped Australia, India, UK. 188 articles. Maybe doing wrong. 
+#5  Perhaps translate articles. Ensure sentiment is captured. 
+#6 Run sentiment_analyzer script every few hours to catch all the articles
+#7 When searching in google, type: "nvidia yahoo" and you will get yahoo articles. Repeat for other sources like yahoo. Repeat for other search engines
+#8 scrape with multiple search queries -- Done
+#9 Scrape news articles from multiple search engines, combine all search results into one list, then remove all repeated ones 
+#10 Try to scrape twitter using headless browser, or manually through mouse clicks, copy paste, etc.
+#11 Scrape twitter using this? https://scrapfly.io/blog/how-to-scrape-twitter/
+#12 Use the description portion of oxylab's search thing as well for senti analysis -- Done 
+#13 Try searching for tweets when searching for nvidia news -- Try again 
+#14 Make a machine learning model to map the days news/tweets/etc. to wether the first candle of the day was green or red(0 or 1)
 
 

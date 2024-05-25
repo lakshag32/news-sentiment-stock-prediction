@@ -18,7 +18,7 @@ import time
 #     'limit': 10,
 # }
 
-queries = ['nvidia','nvidia+yahoo','products+nvidia','nvidia+company', 'nvidia+buy+or+sell', 'nvidia+bad+or+good', 'nvidia+ai', 'nvidia+report', 'nvidia+Q1','nvidia+stock+split','nvidia+finance']
+queries = ['apple','apple+yahoo','products+apple','apple+company', 'apple+buy+or+sell', 'apple+bad+or+good', 'apple+ai', 'apple+report', 'apple+Q1','apple+stock+split','apple+finance']
 countries = ["United States"]#,'Australia',"United Kingdom", "India", "Russia", "China"]
 
 list_of_dfs = []
@@ -38,10 +38,8 @@ for country in countries:
             ],
             # 'geo_location': country,
             'locale': 'en-us',
-            "pages": 10,
+            "pages": 20,
             "limit": 10,
-            "start_page":21
-
         }
 
         # Get response.
@@ -56,13 +54,14 @@ for country in countries:
 
         if response.status_code != 200:
             print("Error - ", response.json())
+            continue
 
         # pprint(response.json())
 
         data = response.json()
         df = pd.json_normalize(data['results'])
-        df.to_csv(f"{country}_{query}3.csv",index=False)
+        df.to_csv(f"{country}_{query}.csv",index=False)
         list_of_dfs.append(df)
 
 all_data = pd.concat(list_of_dfs, ignore_index=True, axis=0)
-all_data.to_csv('last_10.csv', index=False)
+all_data.to_csv('apple_first_20.csv', index=False)
