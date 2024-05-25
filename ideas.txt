@@ -1,10 +1,12 @@
 #ideas on how to improve this: 
+#1 GOOGLE HAS A FEATURE TO SORT BY DATE!! 
 #2 better sentiment analysis model for specifically news articles
 #1 scrape from multiple news data bases -- yahoo, google, etc.
 #3 scrape more than just headlines and run analysis on that
 #5 add weighting to bigger news stations
 #6 Scrape multilple topics on google news? 
 #7 Web scrape youtube search results for Tesla
+#8 scrape youtube video for words tesla/nvidia/etc. Analayze sentiment from there
 
 
 

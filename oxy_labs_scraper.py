@@ -18,16 +18,17 @@ import time
 #     'limit': 10,
 # }
 
-queries = ['nvidia yahoo','products nvidia','nvidia company', 'nvidia buy or sell', 'nvidia bad or good', 'nvidia ai', 'nvidia report', 'nvidia Q1']
-countries = ["United States",'Australia',"United Kingdom", "India", "Russia", "China"]
+queries = ['nvidia','nvidia+yahoo','products+nvidia','nvidia+company', 'nvidia+buy+or+sell', 'nvidia+bad+or+good', 'nvidia+ai', 'nvidia+report', 'nvidia+Q1','nvidia+stock+split','nvidia+finance']
+countries = ["United States"]#,'Australia',"United Kingdom", "India", "Russia", "China"]
 
 list_of_dfs = []
 for country in countries: 
     for query in queries: 
         print(query)
         payload = {
-            "source": "google_search",
-            "query": query,
+            "source": "google",
+            "url": f"https://www.google.com/search?q={query}&sca_esv=ece48eb9caae0a0c&sca_upv=1&rlz=1C1OPNX_enUS1013US1014&tbm=nws&sxsrf=ADLYWIIXpESbCT4Seul8NqTKaC8qrxY0mQ:1716617767582&source=lnt&tbs=qdr:d&sa=X&ved=2ahUKEwj2yIHCk6iGAxVDJDQIHVigA80QpwV6BAgCEAg&biw=1280&bih=569&dpr=1.5",
+            # "query":query,
             "parse": True,
             "context": [
                 {
@@ -35,10 +36,12 @@ for country in countries:
                     "value": "nws"
                 }
             ],
-            'geo_location': country,
+            # 'geo_location': country,
             'locale': 'en-us',
-            "pages": 14,
+            "pages": 10,
             "limit": 10,
+            "start_page":21
+
         }
 
         # Get response.
@@ -58,8 +61,8 @@ for country in countries:
 
         data = response.json()
         df = pd.json_normalize(data['results'])
-        df.to_csv(f"{country}_{query}",index=False)
+        df.to_csv(f"{country}_{query}3.csv",index=False)
         list_of_dfs.append(df)
 
 all_data = pd.concat(list_of_dfs, ignore_index=True, axis=0)
-all_data.to_csv('data.csv', index=False)
+all_data.to_csv('last_10.csv', index=False)
