@@ -1,81 +1,175 @@
 #https://www.geeksforgeeks.org/python-convert-a-string-representation-of-list-into-list/#
 
 import pandas as pd
-import ast
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
+import tqdm
 
-nvidia_finance_titles = []
-nvidia_stock_titles = []
-nvidia_titles = []
-
-nvidia_finance_desc = []
-nvidia_stock_desc = []
-nvidia_desc = []
-
-nvidia_df = pd.read_csv("data//nvidia.csv")
-nvidia_stock_df = pd.read_csv("data//nvidia_stock.csv")
-nvidia_finance_df = pd.read_csv("data//nvidia_finance.csv")
-
-for row in range(len(nvidia_df)): 
-    row_data = ast.literal_eval(nvidia_df["content.results.main"][row])
-    for site in row_data: 
-        if "hour" in site["relative_publish_date"]: 
-            nvidia_titles.append(site['title'])
-            nvidia_desc.append(site["desc"])
-        elif "minute" in site["relative_publish_date"]: 
-            nvidia_titles.append(site['title'])
-            nvidia_desc.append(site["desc"])
-
-for row in range(len(nvidia_stock_df)): 
-    row_data = ast.literal_eval(nvidia_stock_df["content.results.main"][row])
-    for site in row_data: 
-        if "hour" in site["relative_publish_date"]: 
-            nvidia_stock_titles.append(site['title'])
-            nvidia_stock_desc.append(site["desc"])
-
-        elif "minute" in site["relative_publish_date"]: 
-            nvidia_stock_titles.append(site['title'])
-            nvidia_stock_desc.append(site["desc"])
-
-for row in range(len(nvidia_finance_df)): 
-    row_data = ast.literal_eval(nvidia_finance_df["content.results.main"][row])
-    for site in row_data: 
-        if "hour" in site["relative_publish_date"]: 
-            nvidia_finance_titles.append(site['title'])
-            nvidia_finance_desc.append(site["desc"])
-
-        elif "minute" in site["relative_publish_date"]: 
-            nvidia_finance_titles.append(site['title'])
-            nvidia_finance_desc.append(site["desc"])
-
-all_article_titles = nvidia_titles + nvidia_finance_titles + nvidia_stock_titles
-all_article_descs = nvidia_desc + nvidia_finance_desc + nvidia_stock_desc
+companies = ["nvidia","tesla",'apple','amd','alibaba','google','microsoft']
 
 tokenizer = AutoTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
 model = AutoModelForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
+    
+for company in companies: 
+    company_data = pd.read_csv(f"{company}_headlines.csv")        
+    company_headlines = list(set(company_data['0'].tolist()))
 
-total_headline_sentiment = 0 
-total_desc_sentiment = 0 
+    total_company_sentiment = 0
+    
+    for headline in company_headlines: 
+        tokens = tokenizer.encode(headline, return_tensors='pt') #return pytorch tensor/s(?) from sentiment model output
+        model_output_tensor = model(tokens)
+        sentiment_rating = int(torch.argmax(model_output_tensor.logits))+1
+        total_company_sentiment += sentiment_rating
+    
+    avg_company_sentiment = total_company_sentiment/len(company_headlines)
+    print(f"{company} sentiment with {len(company_headlines)} headlines: {avg_company_sentiment}")
 
 
-for headline in all_article_titles:
-    tokens = tokenizer.encode(headline, return_tensors='pt') #return pytorch tensor/s(?) from sentiment model output
-    model_output_tensor = model(tokens)
-    sentiment_rating = int(torch.argmax(model_output_tensor.logits))+1
-    total_headline_sentiment += sentiment_rating
+# nvidia_titles = list(set(nvidia_titles))
+# tesla_titles = list(set(tesla_titles))
+# amd_titles = list(set(amd_titles))
+# apple_titles = list(set(apple_titles))
 
-# for desc in all_article_descs:
-#     tokens = tokenizer.encode(desc, return_tensors='pt') #return pytorch tensor/s(?) from sentiment model output
+# print(len(nvidia_titles))
+# print(len(tesla_titles))
+# print(len(amd_titles))
+# print(len(apple_titles))
+
+# tokenizer = AutoTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
+# model = AutoModelForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
+
+# total_nvidia_headline_sentiment = 0 
+# total_tesla_headline_sentiment = 0 
+# total_amd_headline_sentiment = 0 
+# total_apple_headline_sentiment = 0 
+
+# for headline in nvidia_titles:
+#     tokens = tokenizer.encode(headline, return_tensors='pt') #return pytorch tensor/s(?) from sentiment model output
 #     model_output_tensor = model(tokens)
 #     sentiment_rating = int(torch.argmax(model_output_tensor.logits))+1
-#     total_desc_sentiment += sentiment_rating
+#     total_nvidia_headline_sentiment += sentiment_rating
 
-avg_NVIDIA_headline_sentiment = total_headline_sentiment/len(all_article_titles)
-# avg_NVIDIA_desc_sentiment = total_desc_sentiment/len(all_article_titles)
+# for headline in tesla_titles:
+#     tokens = tokenizer.encode(headline, return_tensors='pt') #return pytorch tensor/s(?) from sentiment model output
+#     model_output_tensor = model(tokens)
+#     sentiment_rating = int(torch.argmax(model_output_tensor.logits))+1
+#     total_tesla_headline_sentiment += sentiment_rating
 
-print(avg_NVIDIA_headline_sentiment)
-# print(avg_NVIDIA_desc_sentiment)
+# for headline in amd_titles:
+#     tokens = tokenizer.encode(headline, return_tensors='pt') #return pytorch tensor/s(?) from sentiment model output
+#     model_output_tensor = model(tokens)
+#     sentiment_rating = int(torch.argmax(model_output_tensor.logits))+1
+#     total_amd_headline_sentiment += sentiment_rating
+
+# for headline in apple_titles:
+#     tokens = tokenizer.encode(headline, return_tensors='pt') #return pytorch tensor/s(?) from sentiment model output
+#     model_output_tensor = model(tokens)
+#     sentiment_rating = int(torch.argmax(model_output_tensor.logits))+1
+#     total_apple_headline_sentiment += sentiment_rating
+
+# avg_nvidia_headline_sentiment = total_nvidia_headline_sentiment/len(nvidia_titles)
+# avg_tesla_headline_sentiment = total_tesla_headline_sentiment/len(tesla_titles)
+# avg_amd_headline_sentiment = total_amd_headline_sentiment/len(amd_titles)
+# avg_apple_headline_sentiment = total_apple_headline_sentiment/len(apple_titles)
+
+
+
+# # avg_NVIDIA_desc_sentiment = total_desc_sentiment/len(all_article_titles)
+
+# print(f"Nvidia Sentiment: {avg_nvidia_headline_sentiment}") #  
+# print(f"Tesla Sentiment: {avg_tesla_headline_sentiment}") #  
+# print(f"amd Sentiment: {avg_tesla_headline_sentiment}") # 
+# print(f"apple Sentiment: {avg_apple_headline_sentiment}") # 
+
+
+"""
+Log to check if this works: 
+
+Day: 5/27/2024
+    Stock: Nvidia
+        Prediction: 
+        Actual: 
+    Stock: Tesla
+        Prediction: 
+        Actual: 
+    Stock: AMD
+            Prediction: 
+            Actual: 
+    Stock: Apple
+            Prediction: 
+            Actual: 
+
+Day: 5/27/2024
+    Stock: Nvidia
+        Prediction: 
+        Actual: 
+    Stock: Tesla
+        Prediction: 
+        Actual: 
+    Stock: AMD
+            Prediction: 
+            Actual: 
+    Stock: Apple
+            Prediction: 
+            Actual: 
+
+Day: 5/27/2024
+    Stock: Nvidia
+        Prediction: 
+        Actual: 
+    Stock: Tesla
+        Prediction: 
+        Actual: 
+    Stock: AMD
+            Prediction: 
+            Actual: 
+    Stock: Apple
+            Prediction: 
+            Actual: 
+
+Day: 5/27/2024
+    Stock: Nvidia
+        Prediction: 
+        Actual: 
+    Stock: Tesla
+        Prediction: 
+        Actual: 
+    Stock: AMD
+            Prediction: 
+            Actual: 
+    Stock: Apple
+            Prediction: 
+            Actual: 
+        
+Day: 5/27/2024
+    Stock: Nvidia
+        Prediction: 
+        Actual: 
+    Stock: Tesla
+        Prediction: 
+        Actual: 
+    Stock: AMD
+            Prediction: 
+            Actual: 
+    Stock: Apple
+            Prediction: 
+            Actual: 
+        
+Day: 5/27/2024
+    Stock: Nvidia
+        Prediction: 
+        Actual: 
+    Stock: Tesla
+        Prediction: 
+        Actual: 
+    Stock: AMD
+            Prediction: 
+            Actual: 
+    Stock: Apple
+            Prediction: 
+            Actual: 
+"""
 
 
 
