@@ -10,7 +10,7 @@ import time
 import pandas as pd
 from tqdm import tqdm
 
-companies = ["nvidia","tesla",'apple','amd','alibaba','google','microsoft']
+companies = ["nvidia","tesla",'apple','amd','alibaba','google','microsoft','facebook','']
 countries =[] 
 
 service = Service(executable_path="chromedriver.exe")
