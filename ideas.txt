@@ -11,6 +11,7 @@
 
 Organized ideas(ranked): 
 #1 GOOGLE HAS A FEATURE TO SORT BY DATE!! 
+#2 Somehow get more search results from google and search engines? 
 #2 Make all things using selenium. Search through different search engines and dif countries with seleneium as well. 
 #3 iterate through search results, acculumate everything in one csv -- Done. 
 #4 Scrape news from google from different countries(US, India, etc.) -- Done. Not super succesfull. Scraped Australia, India, UK. 188 articles. Maybe doing wrong. 
