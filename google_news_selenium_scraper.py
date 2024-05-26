@@ -16,7 +16,7 @@ countries =[]
 service = Service(executable_path="chromedriver.exe")
 driver = webdriver.Chrome(service=service)
 
-for company in tqdm(companies): 
+for company in companies: 
     queries = [f'{company}',f'{company}+yahoo',f'products+{company}',f'{company}+company', f'{company}+buy+or+sell', f'{company}+bad+or+good', f'{company}+ai', f'{company}+report', f'{company}+Q1',f'{company}+stock+split',f'{company}+finance']
     headlines = []
 
