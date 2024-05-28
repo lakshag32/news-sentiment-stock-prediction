@@ -8,16 +8,26 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import time
 import pandas as pd
+import requests
+from rotate_proxies import rotate_proxy
 
 service = Service(executable_path="chromedriver.exe")
 driver = webdriver.Chrome(service=service)
 
-companies = ["nvidia","tesla",'apple','amd','alibaba','google','microsoft','facebook','AMC',]
+companies = ["nvidia","tesla",'apple','amd','alibaba','google','microsoft','facebook','AMC']
 
 username ='@mrcuberlg'
 password = 'hello1234'
 
-driver.get("https://x.com/i/flow/login")
+while True: 
+        try: 
+            rotate_proxy()
+            driver.get("https://x.com/i/flow/login")
+            break
+        except:
+            print("helo")
+            continue
+        
 
 time.sleep(5)
 
@@ -27,9 +37,7 @@ def login():
 
     next_button = driver.find_elements(By.XPATH, "//button[contains(@class,'css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-ywje51 r-184id4b r-13qz1uu r-2yi16 r-1qi8awa r-3pj75a r-1loqt21 r-o7ynqc r-6416eg r-1ny4l3l')]")[0]
     next_button.click()
-
     time.sleep(5)
-
     password_textbox = driver.find_element(By.XPATH,"//input[contains(@class,'r-30o5oe r-1dz5y72 r-13qz1uu r-1niwhzg r-17gur6a r-1yadl64 r-deolkf r-homxoj r-poiln3 r-7cikom r-1ny4l3l r-t60dpp r-fdjqy7')]")
     password_textbox.send_keys(password)
 
@@ -38,17 +46,37 @@ def login():
 
 login()
 
-time.sleep(5)
+time.sleep(10)
 
 for company in ["nvidia"]: #companies: 
     queries = [f'{company}']#,f'{company}+yahoo',f'products+{company}',f'{company}+company', f'{company}+buy+or+sell', f'{company}+bad+or+good', f'{company}+ai', f'{company}+report', f'{company}+Q1',f'{company}+stock+split',f'{company}+finance']
     tweets = []
-    for query in queries:
-        url = f"https://x.com/search?q={query}&src=typed_query&f=live"
-        driver.get(url)
+    #for query in queries: 
+    while True: 
+        try: 
+            rotate_proxy()
+            url = "https://x.com/search?f=live&q=nvidia"
+            driver.get(url)
+            break
+        except:
+            print("helo")
+            continue
 
-        time.sleep(10)
+    tweets = driver.find_elements(By.XPATH,"//div[contains(@data-testid,'tweetText')]")
 
-        driver.stop_client()
+    for tweet in tweets: 
+        print(tweet.text)
+    
+    time.sleep(10)
+
+    while True: 
+        try:
+            rotate_proxy()
+            break
+        except:
+            print("hello")
+            continue
+        
+    driver.stop_client()
 
 

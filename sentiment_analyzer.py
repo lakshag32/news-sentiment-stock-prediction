@@ -5,7 +5,7 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 import tqdm
 
-companies = ["nvidia","tesla",'apple','amd','alibaba','google','microsoft']
+companies = ["nvidia","tesla",'apple','amd','alibaba','google']#,'microsoft','facebook','AMC']
 
 tokenizer = AutoTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
 model = AutoModelForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
@@ -87,18 +87,25 @@ for company in companies:
 Log to check if this works: 
 
 Day: 5/27/2024
-    Stock: Nvidia
-        Prediction: 
+    Stock: NVDA
+        Prediction: 3.14
         Actual: 
-    Stock: Tesla
-        Prediction: 
+    Stock: TSLA
+        Prediction: 2.86
         Actual: 
+    Stock: APPL
+            Prediction: 3.60
+            Actual: 
     Stock: AMD
-            Prediction: 
+            Prediction: 3.8
             Actual: 
-    Stock: Apple
-            Prediction: 
-            Actual: 
+    stock: alibaba: 
+            Predicition: 3.5
+            Actual:  
+    stock: GOOGL:
+            predicition: open high
+            Acutal: 
+            sentiment: 3.14
 
 Day: 5/27/2024
     Stock: Nvidia

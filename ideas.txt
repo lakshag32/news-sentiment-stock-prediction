@@ -10,6 +10,10 @@
 
 
 Organized ideas(ranked): 
+#1 Automated predicition_data collection
+#1 Rotate proxies
+#2 runnign scrape multiple times results in dif serach results? 
+#2 use the undetectable-chromedriver
 #1 GOOGLE HAS A FEATURE TO SORT BY DATE!! 
 #2 Somehow get more search results from google and search engines? 
 #2 Make all things using selenium. Search through different search engines and dif countries with seleneium as well. 

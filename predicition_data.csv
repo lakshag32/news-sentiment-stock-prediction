@@ -1,0 +1,7 @@
+stock,predicition,actual,sentiment,predicted_day,number_headlines
+nvidia,high,  ,3.14,5-28-2024,253
+tesla,high,  ,2.86,5-28-2024,239
+apple,high,  ,3.60,5-28-2024,408
+amd,high,  ,3.80,5-28-2024,94
+alibaba,high,  ,3.53,5-28-2024,105
+google,high,  , 3.15,5-28-2024,327
