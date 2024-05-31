@@ -4,8 +4,7 @@ import os
 import random
 import time
 import requests
-windows_countries = ['United States', 'Canada',
-                     'United Kingdom', 'South Africa', 'India', 'Australia']
+windows_countries = ['United States']#, 'Canada','United Kingdom', 'South Africa', 'India', 'Australia']
 
 current_dir = os.getcwd()
 

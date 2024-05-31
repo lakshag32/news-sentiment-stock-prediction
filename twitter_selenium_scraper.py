@@ -10,15 +10,20 @@ import time
 import pandas as pd
 import requests
 from rotate_proxies import rotate_proxy
+from selenium.webdriver.chrome.options import Options
+
+chrome_options = Options()
+chrome_options.add_experimental_option("detach", True)
 
 service = Service(executable_path="chromedriver.exe")
-driver = webdriver.Chrome(service=service)
+driver = webdriver.Chrome(service=service,options=chrome_options)
 
 companies = ["nvidia","tesla",'apple','amd','alibaba','google','microsoft','facebook','AMC']
 
 username ='@mrcuberlg'
 password = 'hello1234'
 
+tweet_data = [] 
 while True: 
         try: 
             rotate_proxy()
@@ -28,8 +33,7 @@ while True:
             print("helo")
             continue
         
-
-time.sleep(5)
+time.sleep(10)
 
 def login():
     username_textbox = driver.find_element(By.XPATH, "//input[contains(@class,'r-30o5oe r-1dz5y72 r-13qz1uu r-1niwhzg r-17gur6a r-1yadl64 r-deolkf r-homxoj r-poiln3 r-7cikom r-1ny4l3l r-t60dpp r-fdjqy7')]")
@@ -37,7 +41,7 @@ def login():
 
     next_button = driver.find_elements(By.XPATH, "//button[contains(@class,'css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-ywje51 r-184id4b r-13qz1uu r-2yi16 r-1qi8awa r-3pj75a r-1loqt21 r-o7ynqc r-6416eg r-1ny4l3l')]")[0]
     next_button.click()
-    time.sleep(5)
+    time.sleep(10)
     password_textbox = driver.find_element(By.XPATH,"//input[contains(@class,'r-30o5oe r-1dz5y72 r-13qz1uu r-1niwhzg r-17gur6a r-1yadl64 r-deolkf r-homxoj r-poiln3 r-7cikom r-1ny4l3l r-t60dpp r-fdjqy7')]")
     password_textbox.send_keys(password)
 
@@ -48,26 +52,28 @@ login()
 
 time.sleep(10)
 
-for company in ["nvidia"]: #companies: 
-    queries = [f'{company}']#,f'{company}+yahoo',f'products+{company}',f'{company}+company', f'{company}+buy+or+sell', f'{company}+bad+or+good', f'{company}+ai', f'{company}+report', f'{company}+Q1',f'{company}+stock+split',f'{company}+finance']
-    tweets = []
-    #for query in queries: 
-    while True: 
-        try: 
-            rotate_proxy()
-            url = "https://x.com/search?f=live&q=nvidia"
-            driver.get(url)
-            break
-        except:
-            print("helo")
-            continue
+while True: 
+    try: 
+        rotate_proxy()
+        url = "https://x.com/search?f=live&q=%22nvidia%22%20lang%3Aen&src=typed_query"
+        driver.get(url)
+        break
+    except:
+        print("helo")
+        continue
 
+time.sleep(10)
+
+while True: 
     tweets = driver.find_elements(By.XPATH,"//div[contains(@data-testid,'tweetText')]")
-
     for tweet in tweets: 
-        print(tweet.text)
+        fixed_tweet = tweet.text.replace("\n"," ")
+        tweet_data.append(fixed_tweet)
     
-    time.sleep(10)
+    df = pd.DataFrame(tweet_data)
+    df.to_csv("tweets2.csv",mode='a',header=False)
+
+    tweet_data = []
 
     while True: 
         try:
@@ -77,6 +83,8 @@ for company in ["nvidia"]: #companies:
             print("hello")
             continue
         
-    driver.stop_client()
+    driver.refresh()
+
+    time.sleep(30)
 
 

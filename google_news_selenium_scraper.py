@@ -11,7 +11,7 @@ import pandas as pd
 from tqdm import tqdm
 from rotate_proxies import rotate_proxy
 
-companies = ["nvidia","tesla",'apple','amd','alibaba','google','microsoft','facebook','AMC']
+companies = ['apple','amd','alibaba','google','microsoft','facebook','AMC']#["nvidia","tesla",'apple','amd','alibaba','google','microsoft','facebook','AMC']
 countries = [] 
 
 service = Service(executable_path="chromedriver.exe")
