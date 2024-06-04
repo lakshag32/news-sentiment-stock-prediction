@@ -1,15 +1,17 @@
-stock,predicition,actual,sentiment,predicted_day,number_headlines
-nvidia,high,high,3.14,5-28-2024,253
-tesla,high,low,2.86,5-28-2024,239
-apple,high,high,3.60,5-28-2024,408
-amd,high,high,3.80,5-28-2024,94
-alibaba,high,low,3.53,5-28-2024,105
-google,high,low, 3.15,5-28-2024,327
-microsoft,high,low ,3.74,5-28-2024,310
-AMC,high,high,2.39,5-28-2024,89
+stock,predicition,actual,sentiment,predicted_day,number_headlines,media_type
+nvidia,high,high,3.14,5-28-2024,253,news
+tesla,high,low,2.86,5-28-2024,239,news
+apple,high,high,3.60,5-28-2024,408,news
+amd,high,high,3.80,5-28-2024,94,news
+alibaba,high,low,3.53,5-28-2024,105,news
+google,high,low, 3.15,5-28-2024,327,news
+microsoft,high,low ,3.74,5-28-2024,310,news
+AMC,high,high,2.39,5-28-2024,89,news
 
-nvidia,high,low,3.47,5-29-2024,329
-tesla,high,low,2.84,5-29-2024,230
-apple,high,low,3.57,5-29-2024,435
-amd,high,low,3.68,5-29-2024, 148
-alibaba,high,low,3.69,5-29-2024,112
+nvidia,high,low,3.47,5-29-2024,329,news
+tesla,high,low,2.84,5-29-2024,230,news
+apple,high,low,3.57,5-29-2024,435,news
+amd,high,low,3.68,5-29-2024, 148,news
+alibaba,high,low,3.69,5-29-2024,112,news
+
+nvidia, high,   ,3.05,6-04-2024,831,twitter

@@ -71,8 +71,10 @@ while True:
         tweet_data.append(fixed_tweet)
     
     df = pd.DataFrame(tweet_data)
-    df.to_csv("tweets2.csv",mode='a',header=False)
+    df.to_csv("tweets3.csv",mode='a',header=False)
 
+    #retry button class: class="css-175oi2r r-sdzlij r-1phboty r-rs99b7 r-lrvibr r-2yi16 r-1qi8awa r-3pj75a r-1loqt21 r-o7ynqc r-6416eg r-1vtznih r-1ny4l3l"
+    
     tweet_data = []
 
     while True: 
@@ -86,5 +88,3 @@ while True:
     driver.refresh()
 
     time.sleep(30)
-
-
